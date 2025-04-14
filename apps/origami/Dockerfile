@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY --from=turbo /app/out/json .
 
-RUN bun install
+RUN bun install --frozen-lockfile
 
 
 FROM oven/bun as builder
