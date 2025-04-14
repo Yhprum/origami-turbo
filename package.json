@@ -1,0 +1,31 @@
+{
+  "name": "origami-turbo",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev",
+    "dev:server": "turbo -F paper dev",
+    "db:push": "turbo -F paper db:push",
+    "db:studio": "turbo -F paper db:studio",
+    "check": "biome check --write .",
+    "biome": "biome check",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "turbo": "^2.4.2",
+    "@biomejs/biome": "1.9.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0"
+  },
+  "dependencies": {},
+  "lint-staged": {
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+      "biome check --write ."
+    ]
+  },
+  "packageManager": "bun@1.1.33"
+}

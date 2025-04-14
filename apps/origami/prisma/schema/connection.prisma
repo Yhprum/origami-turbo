@@ -1,0 +1,18 @@
+model Connection {
+  id          Int            @id @default(autoincrement())
+  name        String
+  type        ConnectionType
+  accessToken String?
+  itemId      String?
+  syncedAt    DateTime?      @db.Timestamptz(3)
+
+  holdings Holding[]
+  User     User?     @relation(fields: [userId], references: [id])
+  userId   Int?
+}
+
+enum ConnectionType {
+  PLAID
+  ETRADE
+  VANGUARD
+}

@@ -1,0 +1,70 @@
+.table {
+  line-height: 1.3;
+}
+
+.table > thead > tr > th {
+  position: sticky;
+  top: 0;
+  padding: 0.25rem 0.1rem;
+  background-color: var(--mantine-color-body);
+  background-clip: padding-box;
+  user-select: none;
+  z-index: 1;
+}
+
+.table > thead > tr:last-of-type > th {
+  cursor: pointer;
+  vertical-align: bottom;
+}
+
+.table > thead > tr:not(:last-child) > th[colspan]:not(:last-child) {
+  border-right: calc(1px * var(--mantine-scale)) solid var(--table-border-color);
+}
+
+.table > tbody > tr {
+  height: 45px;
+  border-top: calc(1px * var(--mantine-scale)) solid var(--table-border-color);
+}
+
+.table > tbody > tr > td {
+  padding: 0.25rem 0.25rem;
+}
+
+.table.striped > tbody > tr:nth-of-type(2n + 1) > td {
+  background-color: var(--table-striped-color);
+}
+
+.table.striped > tbody > tr:nth-of-type(2n) > td {
+  background-color: var(--mantine-color-body);
+}
+
+.table > tbody > tr[data-with-row-border="true"] > td {
+  background-clip: padding-box;
+}
+
+.table.hover > tbody > tr:hover > td {
+  background-color: var(--table-hover-color);
+}
+
+.table > tfoot:last-of-type {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+}
+
+.table > tfoot > tr > td,
+.table > tfoot > tr > th {
+  background-color: var(--mantine-color-body);
+  background-clip: padding-box;
+  padding: 1rem 0.25rem;
+}
+
+.tableBox {
+  height: calc(100vh - 54px);
+}
+
+.tableBox {
+  @media (min-width: $mantine-breakpoint-sm) {
+    height: calc(100vh - 54px - 1rem - 2px);
+  }
+}

@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+
+  @mixin dark {
+    background-color: var(--mantine-color-dark-8);
+  }
+
+  @mixin light {
+    background-color: var(--mantine-color-gray-0);
+  }
+}
+
+.main {
+  height: 100vh;
+  overflow: auto;
+  flex-grow: 1;
+  background-color: var(--mantine-color-body);
+}
+
+.main {
+  @media (min-width: $mantine-breakpoint-sm) {
+    height: calc(100vh - 1rem);
+    margin: 0.5rem;
+    margin-left: 0;
+    border: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);
+    border-radius: var(--mantine-radius-lg);
+  }
+}

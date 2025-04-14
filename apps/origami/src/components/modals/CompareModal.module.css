@@ -1,0 +1,7 @@
+.current {
+  background-color: var(--mantine-primary-color-light);
+}
+
+.current > td {
+  background-color: transparent !important;
+}

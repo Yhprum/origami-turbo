@@ -1,0 +1,7 @@
+.button {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10;
+  box-shadow: var(--mantine-shadow-md);
+}

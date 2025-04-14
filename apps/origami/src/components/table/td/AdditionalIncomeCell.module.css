@@ -1,0 +1,9 @@
+.td {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.dropdown {
+  overflow-y: auto;
+  overflow-x: hidden;
+}

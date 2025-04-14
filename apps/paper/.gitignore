@@ -1,0 +1,13 @@
+# dependencies
+/node_modules
+
+# build
+/dist
+
+# database
+drizzle/paper.db
+drizzle/paper.db-shm
+drizzle/paper.db-wal
+
+# env
+.env

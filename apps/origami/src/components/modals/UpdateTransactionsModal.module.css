@@ -1,0 +1,17 @@
+.table {
+  width: 100%;
+}
+
+.deleteCell {
+  vertical-align: bottom;
+}
+
+.noTransactionsText {
+  text-align: center;
+  font-style: italic;
+}
+
+.typeColumn {
+  vertical-align: bottom;
+  padding-bottom: 6px;
+}

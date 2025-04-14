@@ -1,0 +1,38 @@
+{
+  "name": "paper",
+  "version": "1.0.50",
+  "scripts": {
+    "dev": "bun run --watch --inspect src/index.ts",
+    "build": "bun build src/index.ts --target bun --outdir ./dist",
+    "start": "NODE_ENV=production bun dist/index.js",
+    "test": "bun test",
+    "biome:check": "biome check",
+    "biome:write": "biome check --write",
+    "migration:create": "drizzle-kit generate",
+    "migration:drop": "drizzle-kit drop",
+    "migration:run": "bun src/db/migrate.ts"
+  },
+  "dependencies": {
+    "@elysiajs/server-timing": "^1.2.1",
+    "@elysiajs/swagger": "^1.2.2",
+    "@polygon.io/client-js": "^7.4.0",
+    "axios": "^1.8.4",
+    "drizzle-orm": "^0.41.0",
+    "drizzle-typebox": "^0.3.1",
+    "elysia": "^1.2.25",
+    "puppeteer": "^24.6.0",
+    "qs": "^6.14.0",
+    "yahoo-finance2": "^2.13.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "^1.2.8",
+    "bun-types": "latest",
+    "drizzle-kit": "^0.30.6",
+    "sql-log-prettifier": "^0.1.2"
+  },
+  "override": {
+    "@sinclair/typebox": "0.32.34"
+  },
+  "module": "src/index.js"
+}

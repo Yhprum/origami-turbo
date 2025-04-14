@@ -1,0 +1,13 @@
+.sticky {
+  position: sticky;
+  left: 0;
+  z-index: 10 !important;
+}
+
+.selector {
+  opacity: 0;
+}
+
+.selector:hover {
+  opacity: 100;
+}

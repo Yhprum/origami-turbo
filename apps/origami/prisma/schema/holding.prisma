@@ -1,0 +1,91 @@
+model Holding {
+  id           Int           @id @default(autoincrement())
+  type         HoldingType
+  buyTarget    Float?
+  sellTarget   Float?
+  notes        String?
+  userId       Int
+  symbol       String
+  name         String?
+  category     String?
+  closed       Boolean       @default(false)
+  connectionId Int?
+  connection   Connection?   @relation(fields: [connectionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user         User          @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  income       Income[]
+  open         OpenOrder[]
+  transactions Transaction[]
+  HoldingTag   HoldingTag[]
+}
+
+model Transaction {
+  id        Int        @id @default(autoincrement())
+  date      DateTime   @db.Timestamptz(3)
+  quantity  Decimal    @db.Decimal
+  price     Decimal    @db.Decimal
+  holdingId Int
+  userId    Int
+  type      AssetClass
+  symbol    String     @db.VarChar(32)
+  holdings  Holding    @relation(fields: [holdingId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users     User       @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Income {
+  id        Int      @id @default(autoincrement())
+  holdingId Int
+  amount    Decimal  @db.Decimal
+  date      DateTime @db.Timestamptz(3)
+  note      String?
+  userId    Int
+  holdings  Holding  @relation(fields: [holdingId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users     User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Idea {
+  id        Int      @id @default(autoincrement())
+  symbol    String
+  userId    Int
+  type      IdeaType
+  target    Float?
+  users     User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  notes     String?
+  tags      String[] @default([])
+  updatedAt DateTime @default(now()) @db.Timestamptz(3)
+}
+
+model OpenOrder {
+  id        Int      @id @default(autoincrement())
+  symbol    String
+  price     Decimal  @db.Decimal
+  quantity  Decimal  @db.Decimal
+  buy       Boolean
+  ordertype String
+  userId    Int
+  gtc       DateTime @db.Timestamptz(3)
+  holdingId Int?
+  holdings  Holding? @relation(fields: [holdingId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users     User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+enum HoldingType {
+  STOCK
+  BOND
+  MUTUAL_FUND
+  COVERED_CALL
+}
+
+enum AssetClass {
+  STOCK
+  BOND
+  MUTUAL_FUND
+  CALL
+  PUT
+}
+
+enum IdeaType {
+  STOCK
+  BOND
+  PREFERRED_STOCK
+  OPTION
+}

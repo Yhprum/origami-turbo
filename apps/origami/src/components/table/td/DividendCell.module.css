@@ -1,0 +1,9 @@
+.cell {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dropdown {
+  overflow-y: auto;
+  overflow-x: hidden;
+}

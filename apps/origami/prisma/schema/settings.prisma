@@ -1,0 +1,22 @@
+model ColumnStyle {
+  table  TableName
+  /// @kyselyType(CellStyle[])
+  styles Json
+  userId Int
+  user   User      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id(name: "columnStyleId", [userId, table])
+}
+
+enum TableName {
+  STOCKS
+  COVERED_CALLS
+  CLOSED_STOCKS
+  CLOSED_OPTIONS
+  STOCK_IDEAS
+  PREFERRED_STOCK_IDEAS
+  OPTION_IDEAS
+  BOND_IDEAS
+  OPEN_ORDERS
+  COMPARE_OPTIONS
+}

@@ -1,0 +1,93 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0.5rem;
+  height: 100svh;
+  white-space: nowrap;
+
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+  transition-property: width, padding;
+
+  &[data-state="expanded"] {
+    width: 233px;
+  }
+
+  &[data-state="collapsed"] {
+    width: 48px;
+
+    .navLink:hover {
+      background-color: var(--mantine-color-gray-2);
+    }
+  }
+}
+
+.sidebar {
+  @media (max-width: $mantine-breakpoint-sm) {
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--mantine-color-body);
+    
+    &[data-state="expanded"] {
+      width: 100%;
+    }
+
+    &[data-state="collapsed"] {
+      width: 0;
+      padding: 0;
+    }
+  }
+}
+
+.link {
+  display: flex; 
+  color: var(--mantine-color-text);
+}
+
+.logo {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.pageLinkContainer {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navLink {
+  border-radius: var(--mantine-radius-md);
+}
+
+.nestedLinkContainer {
+  border-left: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);
+}
+
+.pageLink {
+  border-radius: var(--mantine-radius-md);
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    background-color: var(--mantine-primary-color-light-hover);
+  
+    transition-property: color,background-color;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: .1s;
+  }
+
+  &[data-active="true"] {
+    background-color: var(--mantine-primary-color-light);
+  }
+}
+
+.drawerBody {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

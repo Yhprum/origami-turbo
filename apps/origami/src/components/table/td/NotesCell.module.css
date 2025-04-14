@@ -1,0 +1,12 @@
+.cell {
+  cursor: pointer;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon {
+  vertical-align: middle;
+  color: var(--mantine-color-gray-6);
+}

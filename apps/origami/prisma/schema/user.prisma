@@ -1,0 +1,60 @@
+model User {
+  id            Int      @id @default(autoincrement())
+  name          String?
+  email         String   @unique
+  emailVerified Boolean
+  date          DateTime @default(now()) @db.Timestamptz(3)
+  cash          Decimal  @default(0) @db.Decimal
+  yield         Decimal  @default(0) @db.Decimal
+  createdAt     DateTime @db.Timestamptz()
+  updatedAt     DateTime @db.Timestamptz()
+
+  holdings     Holding[]
+  ideas        Idea[]
+  income       Income[]
+  openOrders   OpenOrder[]
+  transactions Transaction[]
+  columnStyles ColumnStyle[]
+  accounts     Account[]
+  sessions     Session[]
+  userTags     Tag[]
+  Connection   Connection[]
+}
+
+model Session {
+  id        Int       @id @default(autoincrement())
+  expiresAt DateTime
+  token     String    @unique
+  createdAt DateTime? @db.Timestamptz()
+  updatedAt DateTime? @db.Timestamptz()
+  ipAddress String?
+  userAgent String?
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                    Int       @id @default(autoincrement())
+  accountId             String
+  providerId            String
+  userId                Int
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime? @db.Timestamptz()
+  refreshTokenExpiresAt DateTime? @db.Timestamptz()
+  scope                 String?
+  password              String?
+  createdAt             DateTime? @db.Timestamptz()
+  updatedAt             DateTime? @db.Timestamptz()
+}
+
+model Verification {
+  id         Int       @id @default(autoincrement())
+  identifier String
+  value      String
+  expiresAt  DateTime  @db.Timestamptz()
+  createdAt  DateTime? @db.Timestamptz()
+  updatedAt  DateTime? @db.Timestamptz()
+}

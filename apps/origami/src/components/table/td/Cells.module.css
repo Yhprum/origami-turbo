@@ -1,0 +1,46 @@
+.chevron {
+  margin: 0 5px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  color: var(--mantine-color-gray-light-color);
+}
+
+.rotated {
+  transform: rotate(90deg);
+}
+
+.sticky {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-clip: padding-box;
+}
+
+.symbol {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 100px;
+  white-space: nowrap;
+  cursor: pointer;
+  background-clip: padding-box;
+}
+
+.symbolIcon {
+  vertical-align: middle;
+}
+
+.symbolTransaction {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  border-width: 0px !important;
+}
+
+.bondRating {
+  white-space: nowrap;
+}
+
+.bondRatingIcon {
+  vertical-align: middle;
+}

@@ -1,0 +1,8 @@
+.cell {
+  cursor: pointer;
+}
+
+.icon {
+  vertical-align: middle;
+  color: var(--mantine-color-gray-6);
+}

@@ -1,0 +1,25 @@
+.icon {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  transition: fill 200ms, stroke 200ms, transform 100ms ease;
+
+  @mixin dark {
+    fill: var(--mantine-color-dark-3);
+    stroke: var(--mantine-color-dark-3);
+  }
+
+  @mixin light {
+    fill: var(--mantine-color-gray-3);
+    stroke: var(--mantine-color-gray-3);
+  }
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+.icon.active {
+  fill: var(--mantine-color-yellow-6);
+  stroke: var(--mantine-color-yellow-6);
+}

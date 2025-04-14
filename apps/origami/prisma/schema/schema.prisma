@@ -1,0 +1,15 @@
+generator kysely {
+  provider        = "prisma-kysely"
+  previewFeatures = ["prismaSchemaFolder"]
+
+  output       = "../../app/lib/server/db"
+  fileName     = "schema.ts"
+  enumFileName = "enums.ts"
+
+  decimalTypeOverride = "number"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}

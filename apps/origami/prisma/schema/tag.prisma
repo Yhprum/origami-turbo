@@ -1,0 +1,19 @@
+model Tag {
+  id     Int    @id @default(autoincrement())
+  name   String @default("")
+  color  String @default("#238be6")
+  userId Int
+
+  user       User         @relation(fields: [userId], references: [id])
+  HoldingTag HoldingTag[]
+}
+
+model HoldingTag {
+  holdingId Int
+  tagId     Int
+
+  holding Holding @relation(fields: [holdingId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  tag     Tag     @relation(fields: [tagId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@unique([holdingId, tagId])
+}
