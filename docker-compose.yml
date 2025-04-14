@@ -1,0 +1,63 @@
+services:
+  origami:
+    container_name: origami
+    build:
+      context: .
+      dockerfile: ./apps/origami/Dockerfile
+    environment:
+      - CRON_TOKEN=$CRON_TOKEN
+      - DATABASE_URL=postgresql://origami:origami@origami-db:5432/origami?schema=public
+      - BETTER_AUTH_URL=$BETTER_AUTH_URL
+      - BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET
+      - TZ=${TZ:-America/New_York}
+      - PLAID_CLIENT_ID=$PLAID_CLIENT_ID
+      - PLAID_SECRET=$PLAID_SECRET
+      - PLAID_ENV=$PLAID_ENV
+      - RESEND_API_KEY=$RESEND_API_KEY
+      - SUPPORT_EMAIL=$SUPPORT_EMAIL
+      - PAPER_API_URL=paper:3001
+    ports:
+      - 7212:7242
+    depends_on:
+      - origami-db
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=false
+
+  origami-db:
+    image: postgres:14.5
+    container_name: origami-db
+    environment:
+      - POSTGRES_DB=origami
+      - POSTGRES_USER=origami
+      - POSTGRES_PASSWORD=origami
+    volumes:
+      - /volume1/docker/volumes/origami/db:/var/lib/postgresql/data
+    ports:
+      - 5438:5432
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=false
+      - pgbackup.enable=true
+
+  paper:
+    container_name: paper
+    build:
+      context: .
+      dockerfile: ./apps/paper/Dockerfile
+    environment:
+      - DB=/data/db/paper.db
+      - POLYGON_API_KEY=$POLYGON_API_KEY
+      - FMP_API_KEY=$FMP_API_KEY
+      - FIGI_API_KEY=$FIGI_API_KEY
+      - TWELVEDATA_API_KEY=$TWELVEDATA_API_KEY
+      - EODHD_API_KEY=$EODHD_API_KEY
+      - SCHWAB_CLIENT_ID=$SCHWAB_CLIENT_ID
+      - SCHWAB_CLIENT_SECRET=$SCHWAB_CLIENT_SECRET
+    volumes:
+      - /volume1/docker/volumes/Test/paper:/data/db
+    ports:
+      - 3001:3001
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=false
