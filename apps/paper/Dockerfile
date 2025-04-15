@@ -4,7 +4,8 @@ WORKDIR /app
 
 RUN bun add -g turbo
 COPY . .
-RUN turbo prune --docker
+ENV TURBO_TELEMETRY_DISABLED=1
+RUN turbo prune --docker paper
 
 
 FROM oven/bun as installer
